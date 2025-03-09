@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ifemide’s Ultimate Vibe Slam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff1e56, #ffcc00, #00ff99);
+            overflow: hidden;
+            padding: 10px;
+            position: relative;
+        }
+        .vibe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .vibe-spark {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent);
+            border-radius: 50%;
+            animation: vibeSpark 2.5s infinite ease-in-out;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 0 30px rgba(255, 30, 86, 0.6);
+        }
+        @keyframes vibeSpark {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+            50% { transform: translate(20px, -40px) rotate(360deg) scale(1.3); opacity: 0.6; }
+            100% { transform: translate(0, 0) rotate(720deg) scale(1); opacity: 1; }
+        }
+        .wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to top, rgba(255, 204, 0, 0.8), transparent);
+            animation: slamWave 1.5s infinite ease-in-out;
+            pointer-events: none;
+            border-top: 5px solid #ff1e56;
+            z-index: 1;
+            filter: drop-shadow(0 0 15px #ffcc00);
+        }
+        @keyframes slamWave {
+            0%, 100% { transform: translateY(0) skewX(15deg); }
+            50% { transform: translateY(-35px) skewX(-15deg); }
+        }
+        .container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 30, 86, 0.25));
+            padding: clamp(30px, 6vw, 60px);
+            border-radius: 70px;
+            box-shadow: 0 25px 80px rgba(255, 30, 86, 0.7), inset 0 0 30px rgba(255, 204, 0, 0.4);
+            text-align: center;
+            width: 100%;
+            max-width: 1000px;
+            border: 5px solid #ffcc00;
+            position: relative;
+            animation: vibeSlam 1.2s infinite ease-in-out;
+            z-index: 2;
+        }
+        @keyframes vibeSlam {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+        }
+        h1 {
+            color: #ff1e56;
+            font-size: clamp(2.2em, 6.5vw, 4.5em);
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff1e56;
+            position: relative;
+            z-index: 1;
+            animation: vibeFreak 1.5s infinite;
+        }
+        @keyframes vibeFreak {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        #compliment {
+            font-size: clamp(1.3em, 4.5vw, 2.2em);
+            color: #222;
+            margin-bottom: 35px;
+            min-height: 80px;
+            opacity: 0;
+            transform: scale(0) rotate(360deg);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 10px rgba(255, 30, 86, 0.6);
+        }
+        #compliment.show {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(15px, 2.5vw, 25px);
+            justify-content: center;
+            margin: 30px 0;
+        }
+        button {
+            padding: clamp(16px, 3.5vw, 20px) clamp(30px, 4.5vw, 45px);
+            background: linear-gradient(45deg, #ff1e56, #ffcc00);
+            color: white;
+            border: 2px solid #00ff99;
+            border-radius: 80px;
+            font-size: clamp(1.1em, 3.2vw, 1.6em);
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(255, 30, 86, 0.8);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+            flex: 1 1 100%;
+            max-width: 350px;
+            overflow: hidden;
+            animation: buttonVibe 1.5s infinite;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        button:hover::before {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        button:hover {
+            background: linear-gradient(45deg, #ffcc00, #ff1e56);
+            transform: scale(1.15) translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 255, 153, 0.9);
+        }
+        @keyframes buttonVibe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        #favoriteBtn, #shareBtn {
+            background: linear-gradient(45deg, #00ff99, #ffcc00);
+        }
+        #favoriteBtn:hover, #shareBtn:hover {
+            background: linear-gradient(45deg, #ffcc00, #00ff99);
+        }
+        #musicBtn {
+            background: linear-gradient(45deg, #ff1e56, #00ff99);
+        }
+        #musicBtn:hover {
+            background: linear-gradient(45deg, #00ff99, #ff1e56);
+        }
+        #favoriteCompliment, #counter {
+            font-size: clamp(0.9em, 3vw, 1.4em);
+            color: #222;
+            margin: 20px 0;
+            padding: 15px;
+            border: 3px dashed #ffcc00;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.5);
+        }
+        #favoriteCompliment {
+            display: none;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Phone-Specific Styles */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                background: linear-gradient(135deg, #ff1e56, #ffcc00);
+            }
+            .wave {
+                height: 80px;
+                animation: slamWave 1.2s infinite ease-in-out;
+            }
+            .container {
+                padding: 25px;
+                border-radius: 60px;
+                box-shadow: 0 20px 50px rgba(255, 30, 86, 0.6);
+                border: 3px solid #ffcc00;
+                max-width: 100%;
+            }
+            h1 {
+                font-size: clamp(1.8em, 6vw, 3.5em);
+                margin-bottom: 20px;
+            }
+            #compliment {
+                font-size: clamp(1.1em, 4.5vw, 1.8em);
+                min-height: 70px;
+                line-height: 1.4;
+            }
+            .button-group {
+                flex-direction: column;
+                gap: 12px;
+                padding: 0 10px;
+            }
+            button {
+                padding: 14px 25px;
+                font-size: clamp(0.9em, 3.5vw, 1.4em);
+                box-shadow: 0 10px 25px rgba(255, 30, 86, 0.7);
+                max-width: 100%;
+            }
+            button:hover {
+                transform: scale(1.1) translateY(-5px);
+            }
+            #favoriteCompliment, #counter {
+                font-size: clamp(0.8em, 3.2vw, 1.2em);
+                padding: 12px;
+            }
+            .vibe-spark {
+                width: 18px;
+                height: 18px;
+                animation: vibeSpark 2s infinite ease-in-out;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            button {
+                flex: 0 1 auto;
+                width: 80%;
+                max-width: 400px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .button-group {
+                flex-direction: row;
+            }
+            button {
+                flex: 1 1 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vibe-bg" id="vibeBg"></div>
+    <div class="wave"></div>
+    <div class="container">
+        <h1>Ifemide’s Ultimate Vibe Slam</h1>
+        <div id="compliment">Tap for a bestie vibe slam, Ifemide!</div>
+        <div class="button-group">
+            <button onclick="generateCompliment()">Get a Compliment</button>
+            <button id="favoriteBtn" onclick="saveFavorite()">Save as Favorite</button>
+            <button id="shareBtn" onclick="shareCompliment()">Share This</button>
+            <button id="musicBtn" onclick="toggleMusic()">Play Vibe Jams</button>
+        </div>
+        <div id="counter">Compliments Given: 0</div>
+        <div id="favoriteCompliment"></div>
+    </div>
+
+    <script>
+        // Vibe Sparks
+        function createSparks() {
+            const vibeBg = document.getElementById('vibeBg');
+            const sparkCount = window.innerWidth < 480 ? 30 : 60;
+            for (let i = 0; i < sparkCount; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'vibe-spark';
+                spark.style.left = `${Math.random() * 100}%`;
+                spark.style.top = `${Math.random() * 100}%`;
+                spark.style.animationDelay = `${Math.random() * 1.5}s`;
+                vibeBg.appendChild(spark);
+            }
+        }
+        createSparks();
+
+        // High-Energy Compliments
+        const compliments = [
+            "Ifemide, you’re my bestie blasting vibes louder than a festival!",
+            "Hey Ifemide, your laugh’s a vibe cannon—fire it up!",
+            "Ifemide, you’re the glitter bomb in my BFF universe!",
+            "You’re my wild vibe warrior, Ifemide—slamming it!",
+            "Ifemide, your energy’s a friendship rave on full blast!",
+            "Hey bestie, you’re the spark that ignites my party!",
+            "Ifemide, you’re a vibe volcano erupting with awesome!",
+            "You’re my loudmouth legend, Ifemide—own that stage!",
+            "Ifemide, your smile’s a vibe shockwave—BOOM!",
+            "Hey Ifemide, you’re the bass drop in my soul jam!",
+            "Ifemide, you turn chill into a vibe tsunami!",
+            "You’re my golden hype queen, Ifemide—bring it!",
+            "Ifemide, your giggles are a vibe explosion—KAPOW!",
+            "Hey Ifemide, you’re my ride-or-die with max swagger!",
+            "Ifemide, you’re the pop-off to my bestie banger!",
+            "You’re my scream-it-loud sidekick, Ifemide—vibe on!",
+            "Ifemide, your vibe’s a friendship firestorm—hot!",
+            "Hey Ifemide, you’re my sunshine with a megaphone!",
+            "Ifemide, you’re the pulse of our BFF beat—SLAM!",
+            "You’re my bold vibe beast, Ifemide—roar it out!",
+            "Ifemide, our friendship’s a vibe slam dunk—score!"
+        ];
+
+        const complimentDiv = document.getElementById('compliment');
+        const favoriteBtn = document.getElementById('favoriteBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const musicBtn = document.getElementById('musicBtn');
+        const favoriteComplimentDiv = document.getElementById('favoriteCompliment');
+        const counterDiv = document.getElementById('counter');
+        let currentCompliment = '';
+        let complimentCount = 0;
+        const audio = new Audio('https://www.boomplay.com/songs/179857554?srModel=COPYLINK&srList=WEB');
+        audio.loop = true;
+        let isMusicPlaying = false;
+
+        function generateCompliment() {
+            complimentDiv.classList.remove('show');
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * compliments.length);
+                currentCompliment = compliments[randomIndex];
+                complimentDiv.textContent = currentCompliment;
+                complimentDiv.classList.add('show');
+                complimentCount++;
+                counterDiv.textContent = `Compliments Given: ${complimentCount}`;
+                triggerVibeBurst();
+                favoriteBtn.style.display = 'inline';
+                shareBtn.style.display = 'inline';
+            }, 800);
+        }
+
+        function saveFavorite() {
+            if (currentCompliment) {
+                favoriteComplimentDiv.textContent = `Your Slam Fav: "${currentCompliment}"`;
+                favoriteComplimentDiv.style.display = 'block';
+            }
+        }
+
+        function shareCompliment() {
+            if (currentCompliment && navigator.share) {
+                navigator.share({
+                    title: 'Ifemide’s Ultimate Vibe Slam',
+                    text: currentCompliment,
+                    url: window.location.href
+                }).catch(err => alert('Vibe too big to share—copy it!'));
+            } else {
+                alert('Here’s your vibe slam: ' + currentCompliment);
+            }
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                audio.pause();
+                musicBtn.textContent = 'Play Vibe Jams';
+            } else {
+                audio.play();
+                musicBtn.textContent = 'Pause Vibe Jams';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        function triggerVibeBurst() {
+            const canvas = document.createElement('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            const burstColors = ['#ff1e56', '#ffcc00', '#00ff99', '#ff85a1', '#ffeb3b'];
+            let bursts = [];
+            const burstCount = window.innerWidth < 480 ? 50 : 120;
+
+            for (let i = 0; i < burstCount; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 8 + 4;
+                bursts.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    size: Math.random() * 15 + 8,
+                    speedX: Math.cos(angle) * speed,
+                    speedY: Math.sin(angle) * speed,
+                    color: burstColors[Math.floor(Math.random() * burstColors.length)],
+                    life: Math.random() * 60 + 30,
+                    spin: Math.random() * 20 - 10
+                });
+            }
+
+            function animateBursts() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                bursts.forEach((b, i) => {
+                    ctx.save();
+                    ctx.translate(b.x, b.y);
+                    ctx.rotate(b.spin * Math.PI / 180);
+                    ctx.fillStyle = b.color;
+                    ctx.beginPath();
+                    for (let j = 0; j < 5; j++) {
+                        const angle = (Math.PI * 2 * j) / 5 - Math.PI / 2;
+                        const x = Math.cos(angle) * b.size * (j % 2 === 0 ? 1 : 0.5);
+                        const y = Math.sin(angle) * b.size * (j % 2 === 0 ? 1 : 0.5);
+                        j === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.restore();
+                    b.x += b.speedX;
+                    b.y += b.speedY;
+                    b.speedX *= 0.98;
+                    b.speedY *= 0.98;
+                    b.size *= 0.95;
+                    b.life--;
+                    b.spin += b.speedX;
+                    if (b.life <= 0) bursts.splice(i, 1);
+                });
+                if (bursts.length > 0) requestAnimationFrame(animateBursts);
+                else document.body.removeChild(canvas);
+            }
+            animateBursts();
+        }
+
+        window.addEventListener('resize', () => {
+            const canvases = document.querySelectorAll('canvas');
+            canvases.forEach(canvas => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+            const vibeBg = document.getElementById('vibeBg');
+            vibeBg.innerHTML = '';
+            createSparks();
+        });
+    </script>
+</body>
+</html>
